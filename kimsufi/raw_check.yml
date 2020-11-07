@@ -1,0 +1,18 @@
+- name: difference between raw and command module output
+  hosts: kimsufi
+  gather_facts: false
+
+  tasks:
+    - command: ls -lad /tmp
+      register: out_command
+      changed_when: false
+
+    - raw: ls -lad /tmp
+      register: out_raw
+      changed_when: false
+
+    - debug:
+        var: out_command
+
+    - debug:
+        var: out_raw
